@@ -43,17 +43,17 @@
 
 前者返回第一个字符的位置，后者返回最后一个字符的下一位置。
 
-*这里返回迭代器的类型是`string::iterator`,可以将它当作类型名使用，也可以通过解引用`*`符号来获取字符串里的元素*
+*这里返回迭代器的类型是`string::iterator`,可以将它当作类型名使用，也可以通过解引用`*`符号来获取字符串里的元素,如果要将它当作下标使用，要注意减去`.end()`*
 
 *小技巧*
 ```cpp
-for(string::iterator it;it < s.end();it++){
+for(string::iterator it = s.begin();it < s.end();it++){
     continue;
 }
 ```
 与
 ```cpp
-for(auto it;it < s.end();it++){
+for(auto it = s.begin();it < s.end();it++){
     continue;
 }
 ```
@@ -79,7 +79,7 @@ for(auto it;it < s.end();it++){
 例：
 `s.insert(s.begin()+6,"world!")`  
 
-第一个参数是插入的下标位置(一定是迭代器类型的！！)，str是待插入字符串，s是c语言风格的字符数组，n是字符个数，c是待插入字符。
+第一个参数是插入的位置(可以是int型的下标也可以是迭代器)，str是待插入字符串，s是c语言风格的字符数组，n是字符个数，c是待插入字符。
 
 ### find()
 
@@ -90,14 +90,14 @@ for(auto it;it < s.end();it++){
 参数同上（insert）
 find返回找到的第一个下标，没有找到会返回npos。
 
-*npos本质上是string里的常量，它的值为-1*
+*npos 本质上是 string 类定义的一个静态常量，它的值等于 size_t 类型的最大值（在 64 位系统中通常是 18446744073709551615，32 位系统中是 4294967295） *来自豆包* 
 
 ### substr()
 
 `string substr(size_t pos = 0, size_t len = npos) const;`     
 
 返回`string`
-默认从0开始到字符串末尾结束。pos是截取起点，len是截取长度。
+默认从0开始到字符串末尾结束。pos是截取起点;len是截取长度。*截取长度超过被截字符串的长度不会报错*
 
 
 ## string与运算符
@@ -107,8 +107,8 @@ find返回找到的第一个下标，没有找到会返回npos。
 `s = s + "world"`   
 `s += "world"`  
 
-上面两个式子是等价的，效果都是在字符串s后面添加字符串“world”。
-
+上面两个式子是等价的，效果都是在字符串s后面添加字符串“world”。  
+*string之间没有减法！*
 
 ### 关系运算符
 ` > < >= <= == !=`这些都可以与string类型和char*类型混用。
@@ -126,6 +126,9 @@ find返回找到的第一个下标，没有找到会返回npos。
  
  **str**是传入的待转型字符串；**idx**是一个输出型指针，它会待会**str**无法匹配的第一个非数字的位置；**base**是解析string的进制，默认为十进制。   
 
+ 匹配到一个非数字的就停止转换了，即使后面还有数字也不会返回后面的数字。  
+ *如果整个string没有匹配到数字，控制台会输出一串信息：terminate called after throwing an instance of 'std::invalid_argument'what():stoi。意思是：在抛出 std::invalid_argument 类型的异常实例后，程序终止 what(): stoi	异常描述：（错误来源于）stoi 函数*  
+
 
 ### 转换成浮点型
 
@@ -136,8 +139,9 @@ find返回找到的第一个下标，没有找到会返回npos。
 
 ### 整型与浮点型转换成 string
 
-`s = To_string(待转换的整型或浮点型)`
-
+`s = to_string(待转换的整型或浮点型)`
+  
+[TOC]
 
 
 
