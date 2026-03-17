@@ -23,4 +23,15 @@
 ## map的遍历
 
 
+## map的一些小技巧
+
+因为map在通过key访问value时，如果没找到，会直接返回0（准确来说value是int时会这样），可以通过这个来查找map中是否存在某value。
+
+*补充：*
+*如果 value 是数值类型（int/float 等），会返回该类型的零值（比如 int 返回 0，float64 返回 0.0）；*
+*如果 value 是字符串，返回空字符串 ""；*
+*如果 value 是布尔类型，返回 false；*
+*如果 value 是指针 / 切片等，返回 nil。*
+
+
 
