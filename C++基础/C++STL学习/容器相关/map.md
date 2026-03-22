@@ -18,10 +18,18 @@
 `mp.insert({key,value})`
 以上是插入一对键值的。
 
+
+直接进行`mp[key]++`时，是先创建一个键值对，然后从0开始。。。
+
 往map里添加key和value时是一起添加的（也就是说——不可以直接分开添加key和value！！！）。
 
 ## map的遍历
-
+```cpp
+for(auto i = mp.begin();i != mp.end();++i){
+    cout << i->first;
+}
+```
+这里的`i->first`是获取mp的key。
 
 ## map的一些小技巧
 
