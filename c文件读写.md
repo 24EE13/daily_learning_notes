@@ -1,7 +1,19 @@
+# 文件读写
+
+*这个更改的内容很多，需要在`microsoft`官网上看*
 
 
-`FILE *fopen( const char *filename, const char *mode );`
+```cpp
+FILE *fopen( const char *filename, const char *mode );//这个是旧版的
+```
 
+```cpp
+errno_t fopen_s(//新版的
+   FILE** pFile,
+   const char *filename,
+   const char *mode
+);
+```
 
 r	打开一个已有的文本文件，允许读取文件。   
 w	打开一个文本文件，允许写入文件。如果文件不存在，则会创建一个新文件。在这里，您的程序会从文件的开头写入内容。如果文件存在，文件内容会被清空（即文件长度被截断为0）。
@@ -10,9 +22,21 @@ r+	打开一个文本文件，允许读写文件。
 w+	打开一个文本文件，允许读写文件。如果文件已存在，则文件会被截断为零长度，如果文件不存在，则会创建一个新文件。
 a+	打开一个文本文件，允许读写文件。如果文件不存在，则会创建一个新文件。读取会从文件的开头开始，写入则只能是追加模式。   
 
-
+```cpp
  int fclose( FILE *fp );
+```
 
+1. 文件读取
+```cpp 
 int fscanf(FILE *stream, const char *format, ...);
+```
 
-int fprintf(FILE *stream, const char *format, ...);
+文件读取中的format流要带&
+
+2. 文件写入
+```cpp
+int fprintf(FILE *stream, const char *format, ...);//
+```
+
+文件输入中的format流不用带&
+
