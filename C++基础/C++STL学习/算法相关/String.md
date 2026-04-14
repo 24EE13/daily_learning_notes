@@ -18,7 +18,12 @@
 1. `cin >> s`  
 *这种情况遇到空格就会停止输入*
 
-2. `istream& getline(istream& is,string& str,char deline)`  
+2. `istream& getline(istream& is,string& str,char deline)`  //重要
+
+```cpp
+    getline(cin,s,'\n');
+```
+
 *参数一一般是cin，参数二是存放输入对象，参数三是结束输入的符号，参数三可选，默认为`'\n'`*
 
 ## string输出
@@ -142,6 +147,8 @@ find返回找到的第一个下标，没有找到会返回npos。
 `s = to_string(待转换的整型或浮点型)`
   
 [TOC]
+
+
 
 
 
